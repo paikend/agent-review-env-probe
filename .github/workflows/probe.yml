@@ -14,4 +14,4 @@ jobs:
           S: ${{ secrets.PROBE_SECRET }}
         run: |
           echo "event=$GITHUB_EVENT_NAME ref=$GITHUB_REF"
-          if [ -n "$S" ]; then echo RESULT=HAS_SECRET; else echo RESULT=NO_SECRET; fi
+          if [ -n "$S" ]; then echo RESULT=PR_EDITED_WORKFLOW_RAN; else echo RESULT=NO_SECRET; fi
