@@ -1,0 +1,17 @@
+name: probe
+on:
+  pull_request:
+  pull_request_target:
+  push:
+    branches-ignore: [main]
+permissions: {}
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    environment: gate
+    steps:
+      - env:
+          S: ${{ secrets.PROBE_SECRET }}
+        run: |
+          echo "event=$GITHUB_EVENT_NAME ref=$GITHUB_REF"
+          if [ -n "$S" ]; then echo RESULT=HAS_SECRET; else echo RESULT=NO_SECRET; fi
